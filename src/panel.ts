@@ -102,11 +102,11 @@ export class UncannyPanelProvider implements vscode.WebviewViewProvider {
     webview: vscode.Webview,
     stage: number,
   ): vscode.Uri | undefined {
-    // Files are named: "stage (N).png" inside the img/ folder
+    // Files are named: "stageN.png" inside the img/ folder
     const imagePath = vscode.Uri.joinPath(
       this._extensionUri,
       'img',
-      `stage (${stage}).png`,
+      `stage${stage}.png`,
     );
     try {
       fs.accessSync(imagePath.fsPath);
@@ -155,7 +155,7 @@ export class UncannyPanelProvider implements vscode.WebviewViewProvider {
       <img id="stage-img" src="" alt="Stage image" draggable="false" />
       <div id="no-image-placeholder" class="placeholder hidden">
         <div class="placeholder-icon">🎭</div>
-        <div class="placeholder-text">Place your stage images in<br><code>/img/stage (1).png</code> → <code>stage (9).png</code></div>
+        <div class="placeholder-text">Place your stage images in<br><code>/img/stage1.png</code> → <code>stage9.png</code></div>
       </div>
     </div>
 
