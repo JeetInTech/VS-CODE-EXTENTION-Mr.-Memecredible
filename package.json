@@ -1,0 +1,153 @@
+{
+  "name": "mr-memecredible",
+  "displayName": "Mr. Memecredible",
+  "description": "Watch Mr. Memecredible become increasingly uncanny as your code falls apart — 9 stages of real-time chaos.",
+  "version": "1.0.0",
+  "publisher": "uncanny-labs",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "meme",
+    "diagnostics",
+    "errors",
+    "fun",
+    "uncanny"
+  ],
+  "icon": "img/stage (1).png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "uncannyCodeMonitor.openPanel",
+        "title": "Mr. Memecredible: Open Panel",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "uncannyCodeMonitor.toggleSounds",
+        "title": "Mr. Memecredible: Toggle Sound Mode"
+      },
+      {
+        "command": "uncannyCodeMonitor.resetScore",
+        "title": "Mr. Memecredible: Reset Chaos Score"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "mr-memecredible-container",
+          "title": "Mr. Memecredible",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "mr-memecredible-container": [
+        {
+          "type": "webview",
+          "id": "uncannyCodeMonitor.panel",
+          "name": "Mr. Memecredible",
+          "icon": "media/icon.svg",
+          "contextualTitle": "Mr. Memecredible"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "uncannyCodeMonitor.toggleSounds",
+          "when": "view == uncannyCodeMonitor.panel",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Mr. Memecredible",
+      "properties": {
+        "uncannyCodeMonitor.enableSounds": {
+          "type": "boolean",
+          "default": false,
+          "description": "Play ambient sounds that intensify with chaos level."
+        },
+        "uncannyCodeMonitor.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show current stage number in the status bar."
+        },
+        "uncannyCodeMonitor.memeMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show meme images in the panel. Set to false for minimal text-only mode."
+        },
+        "uncannyCodeMonitor.errorWeight": {
+          "type": "number",
+          "default": 2,
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Score weight multiplier for each error."
+        },
+        "uncannyCodeMonitor.warningWeight": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Score weight multiplier for each warning."
+        },
+        "uncannyCodeMonitor.stageThresholds": {
+          "type": "array",
+          "default": [0, 1, 3, 5, 7, 9, 11, 14, 17],
+          "description": "Array of 9 chaos score thresholds mapping to stages 1–9. Must be ascending.",
+          "items": {
+            "type": "number"
+          }
+        },
+        "uncannyCodeMonitor.debounceMs": {
+          "type": "number",
+          "default": 400,
+          "minimum": 100,
+          "maximum": 2000,
+          "description": "Debounce delay (ms) for diagnostics updates."
+        },
+        "uncannyCodeMonitor.enableGitConflictBoost": {
+          "type": "boolean",
+          "default": true,
+          "description": "Increase chaos score when merge conflict markers are detected in open files."
+        },
+        "uncannyCodeMonitor.enableTimeDecay": {
+          "type": "boolean",
+          "default": false,
+          "description": "Slowly reduce the chaos score over time when no new errors appear."
+        },
+        "uncannyCodeMonitor.timeDecayIntervalMs": {
+          "type": "number",
+          "default": 30000,
+          "minimum": 5000,
+          "description": "Interval in ms at which the chaos score decays by 1 point (if time decay is enabled)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vscode/vsce": "^2.24.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,9 @@
+.vscode/**
+.vscode-test/**
+src/**
+.gitignore
+.eslintrc.json
+**/*.map
+**/*.ts
+node_modules
+# img/ and media/ are intentionally kept for packaging
