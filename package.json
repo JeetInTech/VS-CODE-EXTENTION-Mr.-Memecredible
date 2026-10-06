@@ -18,7 +18,7 @@
     "fun",
     "uncanny"
   ],
-  "icon": "img/stage1.png",
+  "icon": "media/icon.png",
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -44,7 +44,7 @@
         {
           "id": "mr-memecredible-container",
           "title": "Mr. Memecredible",
-          "icon": "media/icon.svg"
+          "icon": "media/icon.png"
         }
       ]
     },
@@ -54,7 +54,7 @@
           "type": "webview",
           "id": "uncannyCodeMonitor.panel",
           "name": "Mr. Memecredible",
-          "icon": "media/icon.svg",
+          "icon": "media/icon.png",
           "contextualTitle": "Mr. Memecredible"
         }
       ]
